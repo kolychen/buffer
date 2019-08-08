@@ -35,6 +35,10 @@ func (buf *memory) Write(p []byte) (n int, err error) {
 	return limio.LimitWriter(buf.Buffer, Gap(buf)).Write(p)
 }
 
+func (buf *memory) Copy(dst []byte, src []byte) error {
+	return nil
+}
+
 func (buf *memory) WriteAt(p []byte, off int64) (n int, err error) {
 	if off > buf.Len() {
 		return 0, io.ErrShortWrite

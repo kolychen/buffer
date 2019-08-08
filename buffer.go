@@ -22,6 +22,15 @@ type BufferAt interface {
 	io.WriterAt
 }
 
+//BufferPeek supports Peek OP
+type BufferPeek interface {
+	Buffer
+	ReadPeekByIndex(partitionIndex int) (data []byte, n int, err error)
+	ReadPeek() (data []byte, n int, err error)
+	WriteByIndex(p []byte, off int64) (n int, err error)
+	GetDataLen() int64
+}
+
 func len64(p []byte) int64 {
 	return int64(len(p))
 }
